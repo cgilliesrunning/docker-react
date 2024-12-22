@@ -6,3 +6,15 @@ before_install:
 
 script:
   - docker run -e CI=true cameron/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-2"
+  app: "frontend"
+  env: "Frontend-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-559050205577"
+  bucket_path: "frontend"
+  on:
+    branch: master
+  access_key_id: $Access_key
+  secret_access_key: "$secret_access_key"
